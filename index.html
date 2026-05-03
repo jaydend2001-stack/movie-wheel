@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olivia & Jayden Movie Wheel</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Movie Night Picker</p>
+      <h1>Olivia & Jayden Movie Wheel</h1>
+      <p class="subtitle">Add movies, tag genres, filter the list, then spin to choose what to watch.</p>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel form-panel">
+      <h2>Add a movie</h2>
+      <form id="movieForm">
+        <label>
+          Movie title
+          <input id="titleInput" type="text" placeholder="Interstellar" required />
+        </label>
+        <label>
+          Genres
+          <input id="genreInput" type="text" placeholder="Sci-Fi, Drama" required />
+          <span class="hint">Separate multiple genres with commas.</span>
+        </label>
+        <label>
+          Who added it?
+          <select id="addedByInput">
+            <option>Jayden</option>
+            <option>Olivia</option>
+            <option>Both</option>
+          </select>
+        </label>
+        <label>
+          Poster URL <span class="optional">optional</span>
+          <input id="posterInput" type="url" placeholder="https://..." />
+        </label>
+        <label>
+          Notes <span class="optional">optional</span>
+          <textarea id="notesInput" rows="3" placeholder="Where it streams, why we added it, etc."></textarea>
+        </label>
+        <button type="submit">Add movie</button>
+      </form>
+    </section>
+
+    <section class="panel wheel-panel">
+      <div class="wheel-header">
+        <div>
+          <h2>Spin the wheel</h2>
+          <p id="wheelCount">0 movies available</p>
+        </div>
+        <button id="spinButton" class="spin-button">Spin</button>
+      </div>
+      <div class="wheel-wrap">
+        <div class="pointer"></div>
+        <canvas id="wheelCanvas" width="520" height="520"></canvas>
+      </div>
+      <div id="winnerBox" class="winner hidden"></div>
+    </section>
+
+    <section class="panel list-panel">
+      <div class="list-toolbar">
+        <div>
+          <h2>Movie list</h2>
+          <p id="listCount">No movies yet</p>
+        </div>
+        <div class="toolbar-actions">
+          <select id="genreFilter">
+            <option value="all">All genres</option>
+          </select>
+          <button id="clearFilter" class="secondary">Clear filter</button>
+          <button id="exportButton" class="secondary">Export</button>
+          <label class="import-label secondary">
+            Import
+            <input id="importInput" type="file" accept="application/json" />
+          </label>
+        </div>
+      </div>
+      <div id="movieList" class="movie-grid"></div>
+    </section>
+  </main>
+
+  <template id="movieCardTemplate">
+    <article class="movie-card">
+      <div class="poster"></div>
+      <div class="movie-info">
+        <h3></h3>
+        <p class="meta"></p>
+        <p class="notes"></p>
+        <div class="genres"></div>
+      </div>
+      <button class="delete-button" title="Remove movie">×</button>
+    </article>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
